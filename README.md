@@ -40,4 +40,4 @@ The following identifiers are used for LCD output as defined in the manual (Tabl
 * **Microcontroller:** ATmega32
 * **Language:** Embedded C
 * **IDE:** CodeVisionAVR (using Code Wizard for ADC register configuration)
-* * **Simulation:** Proteus ISIS
+* **Simulation:** Proteus ISIS
