@@ -1,34 +1,43 @@
 # ATmega32 ADC & Sensor Data Acquisition
 
-This repository contains my C code and Proteus simulations for the Analog-to-Digital Converter (ADC) experiment from my Microprocessor Laboratory course at Shiraz University. 
+This repository contains my C code and Proteus simulations for **Experiment 4: Analog-to-Digital Converter (ADC)** from the Microprocessor Laboratory course at Shiraz University.
 
-## Experiment Background & Overview
-In this lab, we used a hardware training board equipped with several analog sensors (a temperature sensor, a gas sensor, and a potentiometer) connected to the input pins of the ATmega32. 
+## 📌 Overview
+The goal of this experiment was to interface analog sensors with the ATmega32 microcontroller. Since microcontrollers operate on digital logic, we utilized the internal 10-bit ADC to convert continuous analog voltage levels into discrete digital values. 
 
-Since microcontrollers only process digital data, the objective was to program the chip's internal 10-bit Analog-to-Digital Converter (ADC) to sample the varying analog voltages from these physical sensors. The firmware selects the correct sensor channel, reads the electrical signal, converts it into a digital value, and translates that data into human-readable measurements to display on a 16x2 Alphanumeric LCD.
+The experiment focuses on:
+*   Configuring the ADC registers (specifically `ADMUX` and `ADCSRA`) for 10-bit resolution and a 62.5 kHz clock frequency.
+*   Selecting appropriate voltage reference sources (AVCC pin).
+*   Mapping raw digital output to real-world physical quantities (e.g., Temperature, Gas concentration)[cite: 5].
 
-## Hardware Configuration & Math
-The internal ADC is configured with a **62.5 kHz clock frequency** to ensure stable readings, utilizing the `AVCC` pin as the voltage reference ($V_{Ref}$).
+## ⚙️ Theory & Configuration
+The ATmega32 features an 8-channel ADC[cite: 5]. The digital output is calculated based on the reference voltage ($V_{Ref}$) and the input analog voltage ($V_{Analog}$):
 
-The 10-bit digital value (0–1023) is converted back into the measured analog voltage using:
-$$V_{Analog}=Digital\_Output\times\frac{V_{Ref}}{1024}$$
+$$Digital~Output = V_{Analog} \times \frac{2^n}{V_{Ref}}$$
 
-Specific transfer functions (e.g., the LM35's 10 mV/°C scale factor) are then applied in C to calculate the real physical quantity.
+*Where $n$ is the ADC resolution (10-bit).*
 
-## Sensor Implementations
-* **Volume / Potentiometer:** Simple 0-5V voltage divider measurement with threshold-based GPIO trigger logic.
-* **Gas Sensor:** Monitoring raw analog gas concentration levels.
-* **LM35 Temperature Sensor:** Converting raw voltage to Celsius.
-* **Noise Filter:** Implementation of a software-based moving average filter (10-sample window) to stabilize fluctuating high-frequency noise from the LM35 sensor.
+### Sensor Mapping Table
+In accordance with the lab manual, the following identifiers were used on the Alphanumeric LCD to distinguish between sensors[cite: 5]:
 
-## Folder Structure
-* `/D1_Volume` - Potentiometer base test and output control logic.
-* `/D2_LM35` - Standard temperature data acquisition.
-* `/D3_Gas` - Analog gas sensor polling.
-* `/D5_LM35_Filtered` - Temperature reading with the moving average algorithm applied.
+| Sensor Type | LCD Identifier |
+| :--- | :--- |
+| Volume (Potentiometer) | T:V |
+| Gas | T:G |
+| Temperature (LM35) | T:T |
+| Humidity | T:H |
+| NTC | T:N |
+| CDS (Light) | T:C |
 
-## Technical Stack
-* **Microcontroller:** ATmega32 (8-bit)
-* **Language:** Embedded C
-* **IDE:** CodeVisionAVR
+## 📂 Repository Contents
+* **/D1_Volume:** Implementation for the potentiometer base test.
+* **/D2_LM35:** Standard data acquisition for the LM35 temperature sensor.
+* **/D3_Gas:** Polling implementation for the analog gas sensor.
+* **/D5_LM35_Filtered:** Extension implementation using a moving average algorithm to stabilize the LM35 temperature readings against high-frequency noise[cite: 5].
+* **/docs:** Original lab manual (Experiment 4).
+
+## 🛠️ Technical Stack
+* **Microcontroller:** ATmega32[cite: 5]
+* **Language:** Embedded C[cite: 5]
+* **IDE:** CodeVisionAVR (using Code Wizard for register configuration)[cite: 5]
 * **Simulation:** Proteus ISIS
