@@ -35,7 +35,6 @@ The following identifiers are used for LCD output as defined in the manual (Tabl
 * **/D2_LM35:** Standard data acquisition for the LM35 temperature sensor.
 * **/D3_Gas:** Polling implementation for the analog gas sensor.
 * **/D5_LM35_Filtered:** Implementation of the noise filtering extension. As discussed in the lab manual, the temperature readings often contain high-frequency noise which was mitigated via a software-based moving average filter to stabilize the display[cite: 1].
-* **/docs:** Original laboratory manual (Experiment 4).
 
 ## Technical Stack
 * **Microcontroller:** ATmega32[cite: 1]
