@@ -1,6 +1,6 @@
 # ATmega32 ADC & Sensor Data Acquisition
 
-This repository contains my laboratory work, C code, and Proteus simulations for **Experiment 4: Analog-to-Digital Converter (ADC)** from the Microprocessor Laboratory course at Shiraz University.
+This repository contains my laboratory work, C code, and Proteus simulations for Experiment 4: Analog-to-Digital Converter (ADC) from the Microprocessor Laboratory course at Shiraz University.
 
 ## Experiment Overview
 Microprocessors operate exclusively in the digital domain, yet real-world physical quantities—such as temperature, light intensity, gas concentration, and mechanical position—are inherently analog. The objective of this experiment was to utilize the ATmega32's internal 10-bit ADC to sample continuous analog voltages and convert them into discrete digital data.
@@ -11,14 +11,14 @@ The project demonstrates how to configure the microcontroller's ADC subsystem to
 The lab manual defines the fundamental ADC operation using the following equations:
 
 **Digital Output Calculation (Equation 1-4):**
-Digital Output = V_Analog * (2^n / V_Ref)
+`Digital Output = V_Analog * (2^n / V_Ref)`
 
 **Real-World Value Calculation (Equation 2-4):**
-Real Value = f(V_Analog) = f(Digital Output * (2^n / V_Ref))
+`Real Value = f(V_Analog) = f(Digital Output * (V_Ref / 2^n))`
 
 *Where 'n' represents the ADC resolution (10-bit) and 'V_Ref' is the reference voltage.*
 
-### Sensor Identifier Table
+## Sensor Identifier Table
 The following identifiers are used for LCD output as defined in the manual (Table 1-4):
 
 | Sensor Type | LCD Identifier |
