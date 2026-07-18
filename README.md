@@ -11,10 +11,10 @@ The project demonstrates how to configure the microcontroller's ADC subsystem to
 The lab manual defines the fundamental ADC operation using the following equations:
 
 **Digital Output Calculation (Equation 1-4):**
-`Digital Output = V_Analog * (2^n / V_Ref)`
+`Digital Output = V_Analog * ( V_Ref / 2^n )`
 
 **Real-World Value Calculation (Equation 2-4):**
-`Real Value = f(V_Analog) = f(Digital Output * (V_Ref / 2^n))`
+`Real Value = f(V_Analog) = f(Digital Output * (2^n / V_Ref ))`
 
 *Where 'n' represents the ADC resolution (10-bit) and 'V_Ref' is the reference voltage.*
 
